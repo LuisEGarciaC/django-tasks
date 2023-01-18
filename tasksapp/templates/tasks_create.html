@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<main class="container">
+	<div class="row">
+		<div class="col-md-4 offset-md-4 mt-5">
+			<form action="{% url 'tasks_create' %}" method="POST" class="card card-body">
+				<h1>{{title}}</h1>
+				{% if error %}
+				<div class="alert alert-danger d-flex align-items-center" role="alert">
+					<svg
+						class="bi flex-shrink-0 me-2"
+						width="24"
+						height="24"
+						role="img"
+						aria-label="Danger:"
+					>
+						<use xlink:href="#exclamation-triangle-fill" />
+					</svg>
+					<div>{{error}}</div>
+				</div>
+				{% endif %} {% csrf_token %} {{form}}
+
+				<input type="submit" class="btn btn-primary mt-4" value="save">
+			</form>
+		</div>
+	</div>
+</main>
+
+{% endblock %}
